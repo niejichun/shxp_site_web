@@ -1,0 +1,6 @@
+*.log
+.idea
+node_modules
+/dist
+public/plugins/bootstrap
+public/plugins/jquery
