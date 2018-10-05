@@ -109,7 +109,7 @@
             <div class="col-md-5 font-color-white background-color-dodgerblue">
                <span class="abstract1">关于我们</span>
                <span class="abstract2">我们关注用户，细致分析产品架构，创立至今百家企业提供信息化解决方案与产品输出</span>
-               <span class="abstract3">点击查看</span>
+               <span class="abstract3" @click="gotoDetail">点击查看</span>
             </div>
             <div class="col-md-2"></div>
         </div>
@@ -159,7 +159,16 @@
 </template>
 
 <script>
-
+    export default {
+      methods: {
+        gotoDetail: function () {
+          let _self = this
+          _self.$router.push({
+            path: '/aboutMe'
+          })
+        }
+      }
+    }
 </script>
 <style scoped>
     .nav-link{
@@ -206,7 +215,8 @@
         height: 50px;
         border: 1px solid;
         text-align: center;
-        line-height: 50px
+        line-height: 50px;
+        cursor:pointer
     }
     .abstract4{
         height:270px;
