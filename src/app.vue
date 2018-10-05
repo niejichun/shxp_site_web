@@ -8,6 +8,7 @@
 <script>
     import Head from '../public/components/head.vue'
     import Footer from '../public/components/footer.vue'
+
     export default {
       components: {
         Head,
