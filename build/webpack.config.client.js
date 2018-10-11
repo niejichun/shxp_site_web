@@ -14,9 +14,12 @@ const devServer={
         errors: true,//将webpack编译的错误显示在页面上
     },
     hot: true,//只更新当前组件
-  historyApiFallback:{
-      disableDotRule: true
-  }
+      historyApiFallback:{
+          disableDotRule: true
+      },
+    proxy:{
+        '/api': 'http://localhost:3000'
+    }
 };
 
 const defaultPlugin = [
