@@ -1,5 +1,17 @@
 <template>
     <div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <testEmit></testEmit>>
+                <input type="file" id="file" class="form-control input-sm ">
+                <button @click="getFile">获取图片</button>
+                <img src="" alt="123" id="testImg">
+                <button @click="testOn">testOn</button>
+
+            </div>
+            <div class="col-md-2"></div>
+        </div>
         <div class="row margin-top-50">
             <div class="col-md-2"></div>
             <div class="col-md-8">
@@ -110,7 +122,6 @@
                <span class="abstract1">关于我们</span>
                <span class="abstract2">我们关注用户，细致分析产品架构，创立至今百家企业提供信息化解决方案与产品输出</span>
                <span class="abstract3" @click="gotoDetail">点击查看</span>
-               <span @click="testFun">test</span>
             </div>
             <div class="col-md-2"></div>
         </div>
@@ -160,7 +171,33 @@
 </template>
 
 <script>
+    import Vue from 'vue'
+    import testEmit from '../../public/components/textEmit.vue';
     export default {
+        components: {
+            testEmit
+        },
+      data () {
+        return {
+          imgSrc: '',
+            eventHub: new Vue(),
+        }
+      },
+      mounted () {
+        let _self = this
+    $('#file').change(function () {
+          let files = this.files
+          let formData = new window.FormData()
+          formData.append('file', files[0])
+
+          _self.$axios.post('/api/saveFile', formData).then(res => {
+            // console.log(res.data)
+          })
+        })
+      },
+      computed: {
+
+      },
       methods: {
         gotoDetail: function () {
           let _self = this
@@ -173,6 +210,19 @@
           _self.$axios.post('/api/getCustomer', {state: 1}).then(res => {
             console.log(res.data)
           })
+        },
+        getFile: function () {
+          let _self = this
+          _self.$axios.post('/api/getFile', {fileName: '5bc5e15aab86863ab93c6f47.jpg'}).then(res => {
+            _self.imgSrc = 'data:image/*;base64,' + res.data.info[0]
+            $('#testImg').attr('src', _self.imgSrc)
+            console.log(_self.imgSrc)
+          })
+        },
+        testOn: function () {
+            let _self = this
+//            _self.eventHub.$emit('textEmil');
+          this.$emit('textEmil')
         }
       }
     }

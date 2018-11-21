@@ -3,7 +3,7 @@
     "plugins": [
         "html"//校验vue文件中的script，配合eslint-plugin-html
     ],
-    "parser": "babel-eslint",//每次修改代码，出发eslint校验代码
+//    "parser": "babel-eslint",//每次修改代码，出发eslint校验代码
     "rules": {
         "no-new": "off",
         "no-new-func": "off", //禁止使用new Function
