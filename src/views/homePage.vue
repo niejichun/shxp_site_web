@@ -3,11 +3,11 @@
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-8">
-                <testEmit></testEmit>>
+                <testEmit v-on:childByValue="testOn"></testEmit>>
                 <input type="file" id="file" class="form-control input-sm ">
                 <button @click="getFile">获取图片</button>
                 <img src="" alt="123" id="testImg">
-                <button @click="testOn">testOn</button>
+                <!--<button @testOnBut="testOn">testOn</button>-->
 
             </div>
             <div class="col-md-2"></div>
@@ -185,7 +185,7 @@
       },
       mounted () {
         let _self = this
-    $('#file').change(function () {
+        $('#file').change(function () {
           let files = this.files
           let formData = new window.FormData()
           formData.append('file', files[0])
@@ -219,10 +219,12 @@
             console.log(_self.imgSrc)
           })
         },
-        testOn: function () {
-            let _self = this
+        testOn: function (params) {
+//            let _self = this
 //            _self.eventHub.$emit('textEmil');
-          this.$emit('textEmil')
+//          this.$emit('textEmil')
+            console.log(params)
+
         }
       }
     }
