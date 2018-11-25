@@ -1,6 +1,5 @@
 const store = {
-    testMsg: 'testMsg',
-    childText:"childText"
+    count:0
 };
 
 export default store

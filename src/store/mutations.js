@@ -1,11 +1,11 @@
 const mutations = {
-    changeTestMsg(state, str){
-        state.testMsg = str;
+    SOME_INCREMENT(state, n){
+        state.count += n
     },
-    changeChildText(state, str){
-        state.childText = str;
+    SOME_DECREMENT(state, n){
+        state.count -= n
     }
-
 }
 
 export default mutations
+

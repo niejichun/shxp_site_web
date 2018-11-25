@@ -1,13 +1,16 @@
 <template>
     <div>
         <div class="row">
-            <testCallValue :params1=params1 :params2=params2></testCallValue>
-            <button @click="modifyTestCallValue">testCallValue</button>
+            <!--<testCallValue :params1=params1 :params2=params2></testCallValue>-->
+            <!--<button @click="modifyTestCallValue">testCallValue</button>-->
 
-            <span>{{testMsg}}</span>
-            <span>{{childText}}</span>
+            <!--<span>{{testMsg}}</span>-->
             <!--<span>{{childText}}</span>-->
-            <button @click="testVuexModifyState">testVuexModifyState</button>
+            <!--<button @click="testVuexModifyState">testVuexModifyState</button>-->
+
+            <h4>测试1：Count is {{count}}</h4>
+            <button @click="SOME_INCREMENT">+</button>
+            <button @click="SOME_DECREMENT">-</button>
         </div>
 
         <div class="row margin-top-50">
@@ -110,7 +113,6 @@
             </div>
             <div class="col-md-2"></div>
         </div>
-
         <div class="row margin-top-50">
             <div class="col-md-2"></div>
             <div class="col-md-3">
@@ -124,7 +126,6 @@
             </div>
             <div class="col-md-2"></div>
         </div>
-
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-8" style="padding-right: 0">
@@ -163,7 +164,6 @@
             </div>
             <div class="col-md-2"></div>
         </div>
-
         <div class="row abstract5"></div>
 
     </div>
@@ -171,7 +171,7 @@
 
 <script>
     import testCallValue from '../../public/components/testCallValue.vue'
-    import {mapState,mapMutations} from 'vuex'
+    import {mapState,mapMutations,mapActions} from 'vuex'
     export default {
       data: function(){
         return {
@@ -183,18 +183,22 @@
         testCallValue
       },
       computed: {
-          ...mapState({
-              testMsg:'testMsg',
-              childText:'childText'
-          })
-          // testMsg(){
-          //     return this.$store.state.testMsg;
-          // },
-          // childText(){
-          //     return this.$store.state.childText;
-          // }
+          count(){
+              return this.$store.state.count
+          }
+
       },
+        mounted(){
+
+        },
       methods: {
+        // ...mapActions(['SOME_INCREMENT','SOME_DECREMENT']),
+          SOME_INCREMENT:function(){
+             this.$store.dispatch('SOME_INCREMENT',2)
+          },
+          SOME_DECREMENT:function(){
+              this.$store.dispatch('SOME_DECREMENT',2)
+          },
         gotoDetail: function () {
           let _self = this
           _self.$router.push({

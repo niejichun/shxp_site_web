@@ -1,0 +1,2 @@
+export const SOME_INCREMENT = "SOME_INCREMENT";
+export const SOME_DECREMENT = "SOME_DECREMENT";
