@@ -11,14 +11,21 @@ const config = {
     externals: {
       'jquery': 'jQuery'
     },
+    resolve: {
+        alias: {//vue$表示精确匹配，这里的意思是：使用独立构建的Vue库
+            'vue$': 'vue/dist/vue.js',
+            'vue-router$': 'vue-router/dist/vue-router.common.js'
+        },
+        extensions: ['.js', '.vue', '.less']
+    },
     module: {
         rules: [
-            {
-                test: /\.(vue|js|jsx)$/,
-                loader: 'eslint-loader',
-                exclude: /node_modules/,
-                enforce: 'pre'//预处理，在真正vue-loader之前，先eslint-loader处理一遍
-            },
+            // {
+            //     test: /\.(vue|js|jsx)$/,
+            //     loader: 'eslint-loader',
+            //     exclude: /node_modules/,
+            //     enforce: 'pre'//预处理，在真正vue-loader之前，先eslint-loader处理一遍
+            // },
             {
                 test: /\.vue$/,
                 loader: 'vue-loader'

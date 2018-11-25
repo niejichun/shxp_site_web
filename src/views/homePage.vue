@@ -1,5 +1,15 @@
 <template>
     <div>
+        <div class="row">
+            <testCallValue :params1=params1 :params2=params2></testCallValue>
+            <button @click="modifyTestCallValue">testCallValue</button>
+
+            <span>{{testMsg}}</span>
+            <span>{{childText}}</span>
+            <!--<span>{{childText}}</span>-->
+            <button @click="testVuexModifyState">testVuexModifyState</button>
+        </div>
+
         <div class="row margin-top-50">
             <div class="col-md-2"></div>
             <div class="col-md-8">
@@ -160,7 +170,30 @@
 </template>
 
 <script>
+    import testCallValue from '../../public/components/testCallValue.vue'
+    import {mapState,mapMutations} from 'vuex'
     export default {
+      data: function(){
+        return {
+            params1:'',
+            params2:''
+        }
+      },
+      components: {
+        testCallValue
+      },
+      computed: {
+          ...mapState({
+              testMsg:'testMsg',
+              childText:'childText'
+          })
+          // testMsg(){
+          //     return this.$store.state.testMsg;
+          // },
+          // childText(){
+          //     return this.$store.state.childText;
+          // }
+      },
       methods: {
         gotoDetail: function () {
           let _self = this
@@ -173,7 +206,15 @@
           _self.$axios.post('/api/getCustomer', {state: 1}).then(res => {
             console.log(res.data)
           })
-        }
+        },
+          modifyTestCallValue: function(){
+            this.params1 = 123;
+            this.params2 = 456
+          },
+          testVuexModifyState: function(){
+            this.$store.commit('changeTestMsg','111111')
+            this.$store.commit('changeChildText','222222')
+          }
       }
     }
 </script>
